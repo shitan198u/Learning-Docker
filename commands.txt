@@ -1,0 +1,68 @@
+docker run hello-world
+docker pull <image_name>
+docker run ubuntu
+
+#check which container is running
+docker ps
+
+#check which containers are running plus which were running previously
+docker ps -a
+
+#force a container to run always
+docker run -it ubuntu /bin/bash
+
+#Make container run in background
+# d stands for daemon mode "it"stands for interactive tty
+docker run -it -d ubuntu
+
+#As we use -d option the container runs in the background
+#but how can we access it?
+#use commands below
+docker ps #check running containers
+docker attach df583fca3ac7 #getting back the container in terminal
+
+#save the container current state and send it to background
+hold ctrl+p and while holding control press q ofc release p haha! while doing that
+
+
+#accessing a application running inside a container
+#taking example for nginx which is a web-server
+docker run -it -d -p 8080:80 nginx
+
+#finding the ip address of the host system
+ip a #this is short for ip addr show commands
+#find the ip address for the host system running docker instance
+
+# example ip address 192.138.29.132
+#open a browser and paste the ip and add ":" port number here it is 8080
+example 152.168.69.134:8080
+#if docker is running locally just type
+localhost:8080
+
+#to stop the container
+docker stop <container_id>
+
+#make the container restart unless stopped
+docker run -it -d -p --restart unless-stopped 8080:80 nginx
+
+#saving container state
+#As you exit a docker container all changes are lost so we need to save the changes
+#make the required changes inside the docker container then ctrl+p then still holding control press q
+docker ps
+#copy the container id
+docker commit 98b1c3879fe2 ubuntu3
+#ubuntu3 is the name of the container now which becomes image
+
+#now check the images
+docker images
+
+
+
+
+
+
+
+
+
+
+
